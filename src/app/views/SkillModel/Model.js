@@ -80,6 +80,8 @@ function Model(props) {
                                     control={<Checkbox checked={state.checkedB} onChange={handleChange} name="checkedB" />}
                                     label="HTML"
                                 />
+                            </FormGroup>
+                            <FormGroup row>
                                 <FormControlLabel
                                     control={<Checkbox checked={state.checkedC} onChange={handleChange} name="checkedC" />}
                                     label="JS"
@@ -88,6 +90,8 @@ function Model(props) {
                                     control={<Checkbox checked={state.checkedD} onChange={handleChange} name="checkedD" />}
                                     label="CSS"
                                 />
+                            </FormGroup>
+                            <FormGroup row>
                                 <FormControlLabel
                                     control={<Checkbox checked={state.checkedE} onChange={handleChange} name="checkedE" />}
                                     label="SCSS"
@@ -96,6 +100,8 @@ function Model(props) {
                                     control={<Checkbox checked={state.checkedF} onChange={handleChange} name="checkedF" />}
                                     label="REACTJS"
                                 />
+                            </FormGroup>
+                            <FormGroup row>
                                 <FormControlLabel
                                     control={<Checkbox checked={state.checkedG} onChange={handleChange} name="checkedG" />}
                                     label="NODEJS"
@@ -104,6 +110,8 @@ function Model(props) {
                                     control={<Checkbox checked={state.checkedH} onChange={handleChange} name="checkedH" />}
                                     label="POSTGRESS"
                                 />
+                            </FormGroup>
+                            <FormGroup row>
                                 <FormControlLabel
                                     control={<Checkbox checked={state.checkedI} onChange={handleChange} name="checkedI" />}
                                     label="LARAVEL"

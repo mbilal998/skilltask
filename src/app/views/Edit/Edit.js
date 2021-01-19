@@ -85,7 +85,7 @@ export default function Edit() {
     return (
         <>
             <Container maxWidth="sm">
-                <form className={classes.root} noValidate autoComplete="off">
+                <form className={classes.root} noValidate autoComplete="off" style={{ marginTop: 20 }}>
                     <TextField inputRef={nameRef} id="my-name" label="Name" value={myname} onChange={(e) => setName(e.target.value)} />
                     <TextField inputRef={fathernameRef} id="my-fathername" label="FatherName" value={myfathername} onChange={(e) => setFatherName(e.target.value)} />
                     <TextField inputRef={designationRef} id="my-designation" label="Designation" value={mydesignation} onChange={(e) => setDesignation(e.target.value)} />
@@ -97,7 +97,7 @@ export default function Edit() {
                 <hr></hr>
                 <Model handleCallback={handleCallback} />
 
-                <p>Your level is (count: {count}): {findExpertiseLevel()}</p>
+                <p style={{ marginTop: 200 }} >Your level is (count: {count}): {findExpertiseLevel()}</p>
             </Container>
         </>
     );

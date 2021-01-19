@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -8,9 +8,26 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { info } from '../../assets/Info';
-import { Button } from "@material-ui/core";
+import { Button, Container } from "@material-ui/core";
 import { useHistory } from 'react-router-dom';
 
+const StyledTableCell = withStyles((theme) => ({
+    head: {
+        backgroundColor: theme.palette.common.black,
+        color: theme.palette.common.white,
+    },
+    body: {
+        fontSize: 14,
+    },
+}))(TableCell);
+
+const StyledTableRow = withStyles((theme) => ({
+    root: {
+        '&:nth-of-type(odd)': {
+            backgroundColor: theme.palette.action.hover,
+        },
+    },
+}))(TableRow);
 
 const useStyles = makeStyles({
     table: {
@@ -21,34 +38,36 @@ function Home() {
     const classes = useStyles();
     let history = useHistory();
     return (
-        <TableContainer component={Paper}>
-            <Table className={classes.table} aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell >Name</TableCell>
-                        <TableCell align="right">FatherName</TableCell>
-                        <TableCell align="right">Designation&nbsp;</TableCell>
-                        <TableCell align="right">Company&nbsp;</TableCell>
-                        <TableCell align="right">Address&nbsp;</TableCell>
-                        <TableCell align="right">Action&nbsp;</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {info.map((row) => (
-                        <TableRow key={row.Name}>
-                            <TableCell component="th" scope="row">{row.Name}</TableCell>
-                            <TableCell align="right">{row.FatherName}</TableCell>
-                            <TableCell align="right">{row.Designation}</TableCell>
-                            <TableCell align="right">{row.Company}</TableCell>
-                            <TableCell align="right">{row.Address}</TableCell>
-                            <TableCell align="right">
-                                <Button variant="contained" color="primary" onClick={() => history.push('/edit', { data: row })}>Edit</Button>
-                            </TableCell>
+        <Container maxWidth="lg" >
+            <TableContainer component={Paper} style={{ marginTop: 20 }}>
+                <Table className={classes.table} aria-label="customized table">
+                    <TableHead>
+                        <TableRow>
+                            <StyledTableCell >Name</StyledTableCell>
+                            <StyledTableCell align="right">FatherName</StyledTableCell>
+                            <StyledTableCell align="right">Designation&nbsp;</StyledTableCell>
+                            <StyledTableCell align="right">Company&nbsp;</StyledTableCell>
+                            <StyledTableCell align="right">Address&nbsp;</StyledTableCell>
+                            <StyledTableCell align="right">Action&nbsp;</StyledTableCell>
                         </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
+                    </TableHead>
+                    <TableBody>
+                        {info.map((row) => (
+                            <StyledTableRow key={row.Name}>
+                                <StyledTableCell component="th" scope="row">{row.Name}</StyledTableCell>
+                                <StyledTableCell align="right">{row.FatherName}</StyledTableCell>
+                                <StyledTableCell align="right">{row.Designation}</StyledTableCell>
+                                <StyledTableCell align="right">{row.Company}</StyledTableCell>
+                                <StyledTableCell align="right">{row.Address}</StyledTableCell>
+                                <StyledTableCell align="right">
+                                    <Button variant="contained" color="primary" onClick={() => history.push('/edit', { data: row })}>Edit</Button>
+                                </StyledTableCell>
+                            </StyledTableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </Container >
     );
 }
 

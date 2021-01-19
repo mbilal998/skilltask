@@ -13,10 +13,9 @@ function Routes() {
   return (
     <Router>
       <div>
-        <AppBar position="sticky" style={{ backgroundColor: 'gray', height:60, padding:15 }}>
+        <AppBar position="sticky" style={{ backgroundColor: 'gray', height: 60, padding: 15 }}>
           <Link className="topmenu" to="/">Home</Link>
         </AppBar>
-
 
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}

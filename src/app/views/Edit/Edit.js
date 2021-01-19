@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField, Container, makeStyles, Button } from '@material-ui/core';
+import { TextField, Container, makeStyles, Button, Typography } from '@material-ui/core';
 import { useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { info } from '../../assets/Info';
@@ -59,22 +59,22 @@ export default function Edit() {
     function findExpertiseLevel() {
         if (count <= 4) {
             return (
-                <Badge color="secondary" badgeContent=" " variant="dot">
-                    Bignner
+                <Badge style={{ backgroundColor: 'yellow', color: 'white' }} badgeContent="" className={classes.margin}>
+                    <Typography className={classes.padding}>Bignner</Typography>
                 </Badge>
             );
         }
         if (count <= 7) {
             return (
-                <Badge color="secondary" badgeContent=" " variant="dot">
-                    mediocre
+                <Badge style={{ backgroundColor: 'blue', color: 'white' }} badgeContent="" className={classes.margin}>
+                    <Typography className={classes.padding}>Mediocre</Typography>
                 </Badge>
             );
         }
         if (count <= 9) {
             return (
-                <Badge color="secondary" badgeContent=" " variant="dot">
-                    expert
+                <Badge style={{ backgroundColor: 'green', color: 'white' }} badgeContent="" className={classes.margin}>
+                    <Typography className={classes.padding}>Expert</Typography>
                 </Badge>
             );
         }

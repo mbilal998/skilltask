@@ -17,18 +17,18 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Edit() {
+export default function Add() {
 
-    const location = useLocation();
+    //const location = useLocation();
     const classes = useStyles();
-    let user = location.state.data;
+    ///let user = location.state.data;
     let history = useHistory();
 
-    const [myname, setName] = useState({ name: user.Name, nameError: '' });
-    const [myfathername, setFatherName] = useState({ fathername: user.FatherName, fathernameError: '' });
-    const [mydesignation, setDesignation] = useState({ designation: user.Designation, designationError: '' });
-    const [mycompany, setCompany] = useState({ company: user.Company, companyError: '' });
-    const [myaddress, setAddress] = useState({ address: user.Address, addressError: '' });
+    const [myname, setName] = useState({ name: '', nameError: '' });
+    const [myfathername, setFatherName] = useState({ fathername: '', fathernameError: '' });
+    const [mydesignation, setDesignation] = useState({ designation: '', designationError: '' });
+    const [mycompany, setCompany] = useState({ company: '', companyError: '' });
+    const [myaddress, setAddress] = useState({ address: '', addressError: '' });
 
     const nameRef = useRef();
     const fathernameRef = useRef();
@@ -66,16 +66,35 @@ export default function Edit() {
     }
 
     const updatedata = () => {
+        const jsonkey = '1';
+
+        const formjson = {
+            "Name": nameRef.current.value,
+            "FatherName": fathernameRef.current.value,
+            "Designation": designationRef.current.value,
+            "Company": companyRef.current.value,
+            "Address": addressRef.current.value
+        }
+        // console.log(validJson);
+
+        window.localStorage.setItem(
+            jsonkey,
+            formjson
+        )
+        console.log("GReen Signal");
+
+        const jsondata = window.localStorage.getItem(jsonkey) || JSON.stringify(formjson, null, 2)
+        console.log(jsondata);
 
         const err = validateError();
-        if (!err) {
-            info[user.id - 1].Name = nameRef.current.value;
-            info[user.id - 1].FatherName = fathernameRef.current.value;
-            info[user.id - 1].Designation = designationRef.current.value;
-            info[user.id - 1].Company = companyRef.current.value;
-            info[user.id - 1].Address = addressRef.current.value;
-            history.push('/')
-        }
+        // if (!err) {
+        //     info[user.id - 1].Name = nameRef.current.value;
+        //     info[user.id - 1].FatherName = fathernameRef.current.value;
+        //     info[user.id - 1].Designation = designationRef.current.value;
+        //     info[user.id - 1].Company = companyRef.current.value;
+        //     info[user.id - 1].Address = addressRef.current.value;
+        //     history.push('/')
+        // }
     }
 
     const handleCallback = (e) => {
@@ -86,29 +105,29 @@ export default function Edit() {
         }
     }
 
-    function findExpertiseLevel() {
-        if (count <= 4) {
-            return (
-                <Badge style={{ backgroundColor: 'yellow', color: 'white' }} badgeContent="" className={classes.margin}>
-                    <Typography className={classes.padding}>Bignner</Typography>
-                </Badge>
-            );
-        }
-        if (count <= 7) {
-            return (
-                <Badge style={{ backgroundColor: 'blue', color: 'white' }} badgeContent="" className={classes.margin}>
-                    <Typography className={classes.padding}>Mediocre</Typography>
-                </Badge>
-            );
-        }
-        if (count <= 9) {
-            return (
-                <Badge style={{ backgroundColor: 'green', color: 'white' }} badgeContent="" className={classes.margin}>
-                    <Typography className={classes.padding}>Expert</Typography>
-                </Badge>
-            );
-        }
-    }
+    // function findExpertiseLevel() {
+    //     if (count <= 4) {
+    //         return (
+    //             <Badge style={{ backgroundColor: 'yellow', color: 'white' }} badgeContent="" className={classes.margin}>
+    //                 <Typography className={classes.padding}>Bignner</Typography>
+    //             </Badge>
+    //         );
+    //     }
+    //     if (count <= 7) {
+    //         return (
+    //             <Badge style={{ backgroundColor: 'blue', color: 'white' }} badgeContent="" className={classes.margin}>
+    //                 <Typography className={classes.padding}>Mediocre</Typography>
+    //             </Badge>
+    //         );
+    //     }
+    //     if (count <= 9) {
+    //         return (
+    //             <Badge style={{ backgroundColor: 'green', color: 'white' }} badgeContent="" className={classes.margin}>
+    //                 <Typography className={classes.padding}>Expert</Typography>
+    //             </Badge>
+    //         );
+    //     }
+    // }
 
     // TODO: React.Fragment
 
@@ -130,11 +149,11 @@ export default function Edit() {
                     <TextField error inputRef={addressRef} id="my-address" label="Address" value={myaddress.address} helperText={myaddress.addressError} onChange={(e) => setAddress({ ...myaddress, address: e.target.value })} />
                 </form>
 
-                <Button variant="contained" color="primary" onClick={() => updatedata()}>Update</Button>
-                <hr></hr>
+                <Button variant="contained" color="primary" onClick={() => updatedata()}>Save</Button>
+                {/* <hr></hr>
                 <Model handleCallback={handleCallback} />
 
-                <p style={{ marginTop: 200 }} >Your level is (count: {count}): {findExpertiseLevel()}</p>
+                <p style={{ marginTop: 200 }} >Your level is (count: {count}): {findExpertiseLevel()}</p> */}
             </Container>
         </>
     );

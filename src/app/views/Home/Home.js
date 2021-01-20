@@ -39,6 +39,7 @@ function Home() {
     let history = useHistory();
     return (
         <Container maxWidth="lg" >
+            <Button style={{ marginTop: 20 }} variant="contained" color="primary" onClick={() => history.push('/add')}>Add</Button>
             <TableContainer component={Paper} style={{ marginTop: 20 }}>
                 <Table className={classes.table} aria-label="customized table">
                     <TableHead>

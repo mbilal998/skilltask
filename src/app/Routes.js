@@ -1,5 +1,7 @@
 import Edit from "./views/Edit/Edit";
 import Home from "./views/Home/Home";
+import Add from "./views/Add/Add";
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -20,8 +22,11 @@ function Routes() {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
+          <Route path="/add">
+            <Add name="edit" />
+          </Route>
           <Route path="/edit">
-            <Edit name="muhammad bilal" />
+            <Edit name="edit" />
           </Route>
           <Route path="/">
             <Home />

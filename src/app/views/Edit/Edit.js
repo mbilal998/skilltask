@@ -22,6 +22,7 @@ export default function Edit() {
     const location = useLocation();
     const classes = useStyles();
     let user = location.state.data;
+    let index = location.state.index;
     let history = useHistory();
 
     const [myname, setName] = useState({ name: user.Name, nameError: '' });
@@ -68,12 +69,30 @@ export default function Edit() {
     const updatedata = () => {
 
         const err = validateError();
+
         if (!err) {
-            info[user.id - 1].Name = nameRef.current.value;
-            info[user.id - 1].FatherName = fathernameRef.current.value;
-            info[user.id - 1].Designation = designationRef.current.value;
-            info[user.id - 1].Company = companyRef.current.value;
-            info[user.id - 1].Address = addressRef.current.value;
+
+            const jsonkey = 'mydata_2';
+
+            const formjson = {
+                "Name": nameRef.current.value,
+                "FatherName": fathernameRef.current.value,
+                "Designation": designationRef.current.value,
+                "Company": companyRef.current.value,
+                "Address": addressRef.current.value
+            }
+    
+            let josnarray = [];
+    
+            josnarray = JSON.parse(window.localStorage.getItem(jsonkey)) || [];
+    
+            josnarray[index] = formjson;
+    
+            window.localStorage.setItem(
+                jsonkey,
+                JSON.stringify(josnarray)
+            )
+            
             history.push('/')
         }
     }

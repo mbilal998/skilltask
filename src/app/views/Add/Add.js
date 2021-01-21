@@ -1,12 +1,7 @@
 import React from 'react';
-import { TextField, Container, makeStyles, Button, Typography } from '@material-ui/core';
+import { TextField, Container, makeStyles, Button } from '@material-ui/core';
 import { useRef, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { info } from '../../assets/Info';
 import { useHistory } from 'react-router-dom';
-import Model from '../SkillModel/Model';
-
-import Badge from '@material-ui/core/Badge';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -35,8 +30,6 @@ export default function Add() {
     const designationRef = useRef();
     const companyRef = useRef();
     const addressRef = useRef();
-
-    const [count, setCount] = useState(0);
 
     const validateError = () => {
 
@@ -90,39 +83,6 @@ export default function Add() {
             history.push('/')
         }
     }
-
-    const handleCallback = (e) => {
-        if (e) {
-            setCount(count + 1);
-        } else {
-            setCount(count - 1);
-        }
-    }
-
-    // function findExpertiseLevel() {
-    //     if (count <= 4) {
-    //         return (
-    //             <Badge style={{ backgroundColor: 'yellow', color: 'white' }} badgeContent="" className={classes.margin}>
-    //                 <Typography className={classes.padding}>Bignner</Typography>
-    //             </Badge>
-    //         );
-    //     }
-    //     if (count <= 7) {
-    //         return (
-    //             <Badge style={{ backgroundColor: 'blue', color: 'white' }} badgeContent="" className={classes.margin}>
-    //                 <Typography className={classes.padding}>Mediocre</Typography>
-    //             </Badge>
-    //         );
-    //     }
-    //     if (count <= 9) {
-    //         return (
-    //             <Badge style={{ backgroundColor: 'green', color: 'white' }} badgeContent="" className={classes.margin}>
-    //                 <Typography className={classes.padding}>Expert</Typography>
-    //             </Badge>
-    //         );
-    //     }
-    // }
-
     // TODO: React.Fragment
 
     // TODO: Form kae upper useref use karooo
@@ -132,22 +92,18 @@ export default function Add() {
             <Container maxWidth="sm">
                 <form className={classes.root} noValidate autoComplete="off" style={{ marginTop: 20 }}>
 
-                    <TextField error inputRef={nameRef} id="my-name" label="Name" value={myname.name} helperText={myname.nameError} onChange={(e) => setName({ ...myname, name: e.target.value })} />
+                    <TextField inputRef={nameRef} id="my-name" label="Name" value={myname.name} helperText={myname.nameError} onChange={(e) => setName({ ...myname, name: e.target.value })} />
 
-                    <TextField error inputRef={fathernameRef} id="my-fathername" label="FatherName" value={myfathername.fathername} helperText={myfathername.fathernameError} onChange={(e) => setFatherName({ ...myfathername, fathername: e.target.value })} />
+                    <TextField inputRef={fathernameRef} id="my-fathername" label="FatherName" value={myfathername.fathername} helperText={myfathername.fathernameError} onChange={(e) => setFatherName({ ...myfathername, fathername: e.target.value })} />
 
-                    <TextField error inputRef={designationRef} id="my-designation" label="Designation" value={mydesignation.designation} helperText={mydesignation.designationError} onChange={(e) => setDesignation({ ...mydesignation, designation: e.target.value })} />
+                    <TextField inputRef={designationRef} id="my-designation" label="Designation" value={mydesignation.designation} helperText={mydesignation.designationError} onChange={(e) => setDesignation({ ...mydesignation, designation: e.target.value })} />
 
-                    <TextField error inputRef={companyRef} id="my-company" label="Company" value={mycompany.company} helperText={mycompany.companyError} onChange={(e) => setCompany({ ...mycompany, company: e.target.value })} />
+                    <TextField inputRef={companyRef} id="my-company" label="Company" value={mycompany.company} helperText={mycompany.companyError} onChange={(e) => setCompany({ ...mycompany, company: e.target.value })} />
 
-                    <TextField error inputRef={addressRef} id="my-address" label="Address" value={myaddress.address} helperText={myaddress.addressError} onChange={(e) => setAddress({ ...myaddress, address: e.target.value })} />
+                    <TextField inputRef={addressRef} id="my-address" label="Address" value={myaddress.address} helperText={myaddress.addressError} onChange={(e) => setAddress({ ...myaddress, address: e.target.value })} />
                 </form>
 
                 <Button variant="contained" color="primary" onClick={() => updatedata()}>Save</Button>
-                {/* <hr></hr>
-                <Model handleCallback={handleCallback} />
-
-                <p style={{ marginTop: 200 }} >Your level is (count: {count}): {findExpertiseLevel()}</p> */}
             </Container>
         </>
     );

@@ -2,11 +2,16 @@ import React from 'react';
 import { TextField, Container, makeStyles, Button, Typography } from '@material-ui/core';
 import { useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { info } from '../../assets/Info';
 import { useHistory } from 'react-router-dom';
 import Model from '../SkillModel/Model';
 
 import Badge from '@material-ui/core/Badge';
+import styled from 'styled-components';
+
+const P = styled.p`
+    color:green;
+    margin-top:20
+`;
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -81,18 +86,18 @@ export default function Edit() {
                 "Company": companyRef.current.value,
                 "Address": addressRef.current.value
             }
-    
+
             let josnarray = [];
-    
+
             josnarray = JSON.parse(window.localStorage.getItem(jsonkey)) || [];
-    
+
             josnarray[index] = formjson;
-    
+
             window.localStorage.setItem(
                 jsonkey,
                 JSON.stringify(josnarray)
             )
-            
+
             history.push('/')
         }
     }
@@ -138,22 +143,22 @@ export default function Edit() {
             <Container maxWidth="sm">
                 <form className={classes.root} noValidate autoComplete="off" style={{ marginTop: 20 }}>
 
-                    <TextField error inputRef={nameRef} id="my-name" label="Name" value={myname.name} helperText={myname.nameError} onChange={(e) => setName({ ...myname, name: e.target.value })} />
+                    <TextField inputRef={nameRef} id="my-name" label="Name" value={myname.name} helperText={myname.nameError} onChange={(e) => setName({ ...myname, name: e.target.value })} />
 
-                    <TextField error inputRef={fathernameRef} id="my-fathername" label="FatherName" value={myfathername.fathername} helperText={myfathername.fathernameError} onChange={(e) => setFatherName({ ...myfathername, fathername: e.target.value })} />
+                    <TextField inputRef={fathernameRef} id="my-fathername" label="FatherName" value={myfathername.fathername} helperText={myfathername.fathernameError} onChange={(e) => setFatherName({ ...myfathername, fathername: e.target.value })} />
 
-                    <TextField error inputRef={designationRef} id="my-designation" label="Designation" value={mydesignation.designation} helperText={mydesignation.designationError} onChange={(e) => setDesignation({ ...mydesignation, designation: e.target.value })} />
+                    <TextField inputRef={designationRef} id="my-designation" label="Designation" value={mydesignation.designation} helperText={mydesignation.designationError} onChange={(e) => setDesignation({ ...mydesignation, designation: e.target.value })} />
 
-                    <TextField error inputRef={companyRef} id="my-company" label="Company" value={mycompany.company} helperText={mycompany.companyError} onChange={(e) => setCompany({ ...mycompany, company: e.target.value })} />
+                    <TextField inputRef={companyRef} id="my-company" label="Company" value={mycompany.company} helperText={mycompany.companyError} onChange={(e) => setCompany({ ...mycompany, company: e.target.value })} />
 
-                    <TextField error inputRef={addressRef} id="my-address" label="Address" value={myaddress.address} helperText={myaddress.addressError} onChange={(e) => setAddress({ ...myaddress, address: e.target.value })} />
+                    <TextField inputRef={addressRef} id="my-address" label="Address" value={myaddress.address} helperText={myaddress.addressError} onChange={(e) => setAddress({ ...myaddress, address: e.target.value })} />
                 </form>
 
                 <Button variant="contained" color="primary" onClick={() => updatedata()}>Update</Button>
                 <hr></hr>
                 <Model handleCallback={handleCallback} />
 
-                <p style={{ marginTop: 200 }} >Your level is (count: {count}): {findExpertiseLevel()}</p>
+                <P>Your level is (count: {count}): {findExpertiseLevel()}</P>
             </Container>
         </>
     );

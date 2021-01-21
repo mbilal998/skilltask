@@ -36,17 +36,12 @@ const useStyles = makeStyles({
 function Home() {
     const classes = useStyles();
     let history = useHistory();
-    let info = [];
 
-    // info = window.localStorage.getItem('mydata_2');
-
-    // console.log(info);
     const user2 = JSON.parse(window.localStorage.getItem('mydata_2'));
 
     const [user, setUser] = useState(user2);
 
     return (
-
 
         <Container maxWidth="lg" >
             <Button style={{ marginTop: 20 }} variant="contained" color="primary" onClick={() => history.push('/add')}>Add</Button>
@@ -80,7 +75,6 @@ function Home() {
             </TableContainer>
         </Container >
     );
-
 }
 
 export default Home;

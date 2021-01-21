@@ -35,6 +35,7 @@ const useStyles = makeStyles({
 });
 function Home() {
     const classes = useStyles();
+
     let history = useHistory();
 
     const user2 = JSON.parse(window.localStorage.getItem('mydata_2'));

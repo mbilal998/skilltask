@@ -1,6 +1,8 @@
 import { useMemo, useState } from 'react';
 import styled from 'styled-components'
 import { useTable } from 'react-table'
+import { useHistory } from 'react-router-dom';
+import { Button } from "@material-ui/core";
 
 const Styles = styled.div`
   padding: 1rem;
@@ -77,55 +79,47 @@ function Table({ columns, data }) {
 
 function HomeHeadless() {
 
+    let history = useHistory();
+
     const information = JSON.parse(window.localStorage.getItem('mydata_2'));
     const [data, setData] = useState(information);
 
     const columns = useMemo(
         () => [
             {
-                Header: 'Profile Information',
-                columns: [
-                    {
-                        Header: 'Name',
-                        accessor: 'Name',
-                    },
-                    {
-                        Header: 'FatherName',
-                        accessor: 'FatherName',
-                    },
-                ],
+                Header: 'Name',
+                accessor: 'Name',
             },
             {
-                Header: 'Company Information',
-                columns: [
-                    {
-                        Header: 'Designation',
-                        accessor: 'Designation',
-                    },
-                    {
-                        Header: 'Company',
-                        accessor: 'Company',
-                    }
-                ],
+                Header: 'FatherName',
+                accessor: 'FatherName',
             },
             {
-                Header: 'Address Information',
-                columns: [
-                    {
-                        Header: 'Address',
-                        accessor: 'Address',
-                    }
-                ],
+                Header: 'Designation',
+                accessor: 'Designation',
             },
-            // {
-            //     Header: 'Action',
-            //     columns: [
-            //         {
-            //             Header: 'Edit',
-            //             accessor: 'Edit',
-            //         }
-            //     ],
-            // },
+            {
+                Header: 'Company',
+                accessor: 'Company',
+            },
+            {
+                Header: 'Address',
+                accessor: 'Address',
+            },
+            {
+                Header: 'Edit',
+                accessor: 'Edit',
+                Cell: cell => (
+                    <Button variant="contained" color="primary" value={cell.accessor} onClick={() => history.push('/edit', { data: cell.row.original, index: cell.row.index })} >
+                        Edit
+                    </Button>
+                )
+                // Cell: cell => (
+                //     <button value={cell.accessor} onClick={console.log(cell)} >
+                //         Edit
+                //     </button>
+                // )
+            }
         ],
         []
     )

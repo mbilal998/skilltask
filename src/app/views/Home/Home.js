@@ -10,6 +10,8 @@ import Paper from '@material-ui/core/Paper';
 import { Button, Container } from "@material-ui/core";
 import { useHistory } from 'react-router-dom';
 
+import SelectReact from '../ReactSelect/ReactSelect';
+
 const StyledTableCell = withStyles((theme) => ({
     head: {
         backgroundColor: theme.palette.common.black,
@@ -73,7 +75,11 @@ function Home() {
                     </TableBody>
                 </Table>
             </TableContainer>
+            <hr></hr>
+            <SelectReact />
+
         </Container >
+
     );
 }
 

@@ -114,11 +114,6 @@ function HomeHeadless() {
                         Edit
                     </Button>
                 )
-                // Cell: cell => (
-                //     <button value={cell.accessor} onClick={console.log(cell)} >
-                //         Edit
-                //     </button>
-                // )
             }
         ],
         []

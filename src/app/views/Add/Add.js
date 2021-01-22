@@ -25,11 +25,7 @@ export default function Add() {
     const [mycompany, setCompany] = useState({ company: '', companyError: '' });
     const [myaddress, setAddress] = useState({ address: '', addressError: '' });
 
-    const nameRef = useRef();
-    const fathernameRef = useRef();
-    const designationRef = useRef();
-    const companyRef = useRef();
-    const addressRef = useRef();
+    const formref = useRef();
 
     const validateError = () => {
 
@@ -58,16 +54,17 @@ export default function Add() {
     }
 
     const updatedata = () => {
+
         const err = validateError();
         if (!err) {
             const jsonkey = 'mydata_2';
 
             const formjson = {
-                "Name": nameRef.current.value,
-                "FatherName": fathernameRef.current.value,
-                "Designation": designationRef.current.value,
-                "Company": companyRef.current.value,
-                "Address": addressRef.current.value
+                "Name": formref.current['my-name'].value,
+                "FatherName": formref.current['my-fathername'].value,
+                "Designation": formref.current['my-designation'].value,
+                "Company": formref.current['my-company'].value,
+                "Address": formref.current['my-address'].value
             }
 
             let josnarray = [];
@@ -91,17 +88,17 @@ export default function Add() {
     return (
         <>
             <Container maxWidth="sm">
-                <form className={classes.root} noValidate autoComplete="off" style={{ marginTop: 20 }}>
+                <form ref={formref} className={classes.root} noValidate autoComplete="off" style={{ marginTop: 20 }}>
 
-                    <TextField inputRef={nameRef} id="my-name" label="Name" value={myname.name} helperText={myname.nameError} onChange={(e) => setName({ ...myname, name: e.target.value })} />
+                    <TextField id="my-name" label="Name" value={myname.name} helperText={myname.nameError} onChange={(e) => setName({ ...myname, name: e.target.value })} />
 
-                    <TextField inputRef={fathernameRef} id="my-fathername" label="FatherName" value={myfathername.fathername} helperText={myfathername.fathernameError} onChange={(e) => setFatherName({ ...myfathername, fathername: e.target.value })} />
+                    <TextField id="my-fathername" label="FatherName" value={myfathername.fathername} helperText={myfathername.fathernameError} onChange={(e) => setFatherName({ ...myfathername, fathername: e.target.value })} />
 
-                    <TextField inputRef={designationRef} id="my-designation" label="Designation" value={mydesignation.designation} helperText={mydesignation.designationError} onChange={(e) => setDesignation({ ...mydesignation, designation: e.target.value })} />
+                    <TextField id="my-designation" label="Designation" value={mydesignation.designation} helperText={mydesignation.designationError} onChange={(e) => setDesignation({ ...mydesignation, designation: e.target.value })} />
 
-                    <TextField inputRef={companyRef} id="my-company" label="Company" value={mycompany.company} helperText={mycompany.companyError} onChange={(e) => setCompany({ ...mycompany, company: e.target.value })} />
+                    <TextField id="my-company" label="Company" value={mycompany.company} helperText={mycompany.companyError} onChange={(e) => setCompany({ ...mycompany, company: e.target.value })} />
 
-                    <TextField inputRef={addressRef} id="my-address" label="Address" value={myaddress.address} helperText={myaddress.addressError} onChange={(e) => setAddress({ ...myaddress, address: e.target.value })} />
+                    <TextField id="my-address" label="Address" value={myaddress.address} helperText={myaddress.addressError} onChange={(e) => setAddress({ ...myaddress, address: e.target.value })} />
                 </form>
 
                 <Button variant="contained" color="primary" onClick={() => updatedata()}>Save</Button>
